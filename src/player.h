@@ -1182,16 +1182,6 @@ class Player final : public Creature, public Cylinder
 				client->sendTournamentLeaderboard();
 			}
 		}
-		void sendQuestLog() {
-			if (client) {
-				client->sendQuestLog();
-			}
-		}
-		void sendQuestLine(const Quest* quest) {
-			if (client) {
-				client->sendQuestLine(quest);
-			}
-		}
 		void sendFightModes() {
 			if (client) {
 				client->sendFightModes();

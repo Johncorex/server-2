@@ -2934,38 +2934,6 @@ void ProtocolGame::sendMarketDetail(uint16_t itemId)
 	writeToOutputBuffer(playermsg);
 }
 
-void ProtocolGame::sendQuestLog()
-{
-	playermsg.reset();
-	playermsg.addByte(0xF0);
-	playermsg.add<uint16_t>(g_game.quests.getQuestsCount(player));
-	for (const Quest& quest : g_game.quests.getQuests()) {
-		if (quest.isStarted(player)) {
-			playermsg.add<uint16_t>(quest.getID());
-			playermsg.addString(quest.getName());
-			playermsg.addByte(quest.isCompleted(player));
-		}
-	}
-
-	writeToOutputBuffer(playermsg);
-}
-
-void ProtocolGame::sendQuestLine(const Quest* quest)
-{
-	playermsg.reset();
-	playermsg.addByte(0xF1);
-	playermsg.add<uint16_t>(quest->getID());
-	playermsg.addByte(quest->getMissionsCount(player));
-	for (const Mission& mission : quest->getMissions()) {
-		if (mission.isStarted(player)) {
-			playermsg.addString(mission.getName(player));
-			playermsg.addString(mission.getDescription(player));
-		}
-	}
-
-	writeToOutputBuffer(playermsg);
-}
-
 void ProtocolGame::sendTradeItemRequest(const std::string& traderName, const Item* item, bool ack)
 {
 	playermsg.reset();
