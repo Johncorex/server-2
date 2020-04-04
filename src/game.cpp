@@ -5909,7 +5909,6 @@ bool Game::reload(ReloadTypes_t reloadType)
 			Npcs::reload();
 			raids.reload() && raids.startup();
 			Item::items.reload();
-			quests.reload();
 			mounts.reload();
 			g_config.reload();
 			g_events->load();
